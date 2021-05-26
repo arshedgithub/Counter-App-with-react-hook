@@ -1,63 +1,51 @@
-import React, { Component } from 'react';
-import NavBar from './components/navbar';
-import Counters from './components/counters';
-import './App.css';
+import React, { useState } from "react";
+import NavBar from "./components/navbar";
+import Counters from "./components/counters";
+import "./App.css";
 
-class App extends Component {
-  state = {
-    counters: [
+const App = () => {
+  const [counters, setCounters] = useState([
+    { id: 1, value: 0 },
+    { id: 2, value: 1 },
+    { id: 3, value: 0 },
+    { id: 4, value: 2 }
+  ]);
+
+  const handleIncrement = counter => {
+    counters[counter.id - 1].value = counter.value + 1;
+    setCounters([...counters]);
+  };
+
+  const handleSubstitution = counter => {
+    counters[counter.id - 1].value = counter.value - 1;
+    setCounters([...counters]);
+  };
+
+  const handleReset = () => {
+    setCounters([
       { id: 1, value: 0 },
-      { id: 2, value: 1 },
+      { id: 2, value: 0 },
       { id: 3, value: 0 },
-      { id: 4, value: 2 },
-    ]
-  }
+      { id: 4, value: 0 }
+    ]);
+  };
 
-  handleIncrement = (counter) => {
-    const counters = [...this.state.counters];
-    const index = counters.indexOf(counter);
-    counters[index] = { ...counter };
-    counters[index].value++;
-    this.setState({ counters });
-    console.log(this.state.counters)
-  }
+  const handleDelete = counterID => {
+    setCounters([...counters.filter(c => c.id !== counterID)]);
+  };
 
-  handleSubstitution = (counter) => {
-    const counters = this.state.counters;
-    const index = counters.indexOf(counter);
-    counters[index] = { ...counter };
-    counters[index].value--;
-    this.setState({ counters })
-  }
-
-  handleReset = () => {
-    this.setState({
-      counters: [
-        { id: 1, value: 0 },
-        { id: 2, value: 0 },
-        { id: 3, value: 0 },
-        { id: 4, value: 0 },
-      ]
-    });
-  }
-
-  handleDelete = (counterID) => {
-    const counters = this.state.counters.filter(c => c.id !== counterID);
-    this.setState({ counters })
-  }
-
-  render() {
-    return (
-      <React.Fragment>
-        <NavBar totalCounters={this.state.counters.filter(c => c.value > 0).length} />
-        <Counters counters={this.state.counters}
-          onIncrement={this.handleIncrement}
-          onSubstitution={this.handleSubstitution}
-          onReset={this.handleReset}
-          onDelete={this.handleDelete} />
-      </React.Fragment>
-    );
-  }
-}
+  return (
+    <React.Fragment>
+      <NavBar totalCounters={counters.filter(c => c.value > 0).length} />
+      <Counters
+        counters={counters}
+        onIncrement={handleIncrement}
+        onSubstitution={handleSubstitution}
+        onReset={handleReset}
+        onDelete={handleDelete}
+      />
+    </React.Fragment>
+  );
+};
 
 export default App;
