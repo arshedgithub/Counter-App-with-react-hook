@@ -19,7 +19,6 @@ class App extends Component {
     counters[index] = { ...counter };
     counters[index].value++;
     this.setState({ counters });
-    console.log(this.state.counters);
   }
 
   handleSubstitution = (counter) => {
@@ -29,11 +28,29 @@ class App extends Component {
     counters[index].value--;
     this.setState({ counters })
   }
+
+  handleReset = () => {
+    this.state.counters.map(c => {
+      c.value = 0;
+      return c;
+    })
+    console.log(this.state);
+  }
+
+  handleDelete = (counterID) => {
+    const counters = this.state.counters.filter(c => c.id !== counterID);
+    this.setState({ counters })
+  }
+
   render() {
     return (
       <React.Fragment>
         <NavBar totalCounters={this.state.counters.length} />
-        <Counters counters={this.state.counters} onIncrement={this.handleIncrement} onSubstitution={this.handleSubstitution} />
+        <Counters counters={this.state.counters}
+          onIncrement={this.handleIncrement}
+          onSubstitution={this.handleSubstitution}
+          onReset={this.handleReset}
+          onDelete={this.handleDelete} />
       </React.Fragment>
     );
   }
