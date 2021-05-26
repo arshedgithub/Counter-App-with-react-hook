@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class Counter extends Component {
   render() {
-    const { counter, onIncrement, onSubstitution } = this.props;
+    const { counter, onIncrement, onSubstitution, onDelete } = this.props;
     return (
       <div className="container">
         <div className="row m-3">
@@ -27,7 +27,7 @@ class Counter extends Component {
             </button>
             <button
               className="btn btn-danger"
-              //   onClick={() => onDelete()}
+              onClick={() => onDelete(counter.id)}
             >
               Delete
             </button>
