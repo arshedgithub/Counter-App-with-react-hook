@@ -11,13 +11,13 @@ const App = () => {
     { id: 4, value: 2 }
   ]);
 
-  const handleIncrement = counter => {
-    counters[counter.id - 1].value = counter.value + 1;
+  const handleIncrement = (counter, index) => {
+    counters[index].value = counter.value + 1;
     setCounters([...counters]);
   };
 
-  const handleSubstitution = counter => {
-    counters[counter.id - 1].value = counter.value - 1;
+  const handleSubstitution = (counter, index) => {
+    counters[index].value = counter.value - 1;
     setCounters([...counters]);
   };
 
