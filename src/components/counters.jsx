@@ -7,6 +7,7 @@ const Counters = ({ counters, onIncrement, onSubstitution }) => {
       <button className="btn btn-primary m-3">Reset</button>
       {counters.map((counter) => (
         <Counter
+          key={counter.id}
           counter={counter}
           onIncrement={onIncrement}
           onSubstitution={onSubstitution}
