@@ -5,8 +5,8 @@ class Counter extends Component {
     const { counter, onIncrement, onSubstitution, onDelete } = this.props;
     return (
       <div className="container">
-        <div className="row m-3">
-          <div className="col-1">
+        <div className="row my-3">
+          <div className="col-1 mx-2">
             <span className={this.getBadgeClass()}>
               {this.formatCount(counter.value)}
             </span>
