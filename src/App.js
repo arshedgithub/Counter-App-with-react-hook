@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import NavBar from './common/navbar';
+import NavBar from './components/navbar';
+import Counters from './components/counters';
 import './App.css';
 
 class App extends Component {
@@ -11,9 +12,29 @@ class App extends Component {
       { id: 4, value: 2 },
     ]
   }
+
+  handleIncrement = (counter) => {
+    const counters = [...this.state.counters];
+    const index = counters.indexOf(counter);
+    counters[index] = { ...counter };
+    counters[index].value++;
+    this.setState({ counters });
+    console.log(this.state.counters);
+  }
+
+  handleSubstitution = (counter) => {
+    const counters = this.state.counters;
+    const index = counters.indexOf(counter);
+    counters[index] = { ...counter };
+    counters[index].value--;
+    this.setState({ counters })
+  }
   render() {
     return (
-      <NavBar totalCounters={this.state.counters.length} />
+      <React.Fragment>
+        <NavBar totalCounters={this.state.counters.length} />
+        <Counters counters={this.state.counters} onIncrement={this.handleIncrement} onSubstitution={this.handleSubstitution} />
+      </React.Fragment>
     );
   }
 }
