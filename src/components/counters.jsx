@@ -1,26 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import Counter from "./counter";
 
-const Counters = ({
-  counters,
-  onIncrement,
-  onSubstitution,
-  onReset,
-  onDelete
-}) => {
+const Counters = ({ setTotalCount, totalCount }) => {
+  const [initialCount, setInitialCount] = useState(["1", "2", "3", "4"]);
+
+  const onReset = () => {
+    setInitialCount(["1", "2", "3", "4"]);
+    setTotalCount(0);
+  };
+
+  const onDelete = (index, count) => {
+    initialCount.splice(
+      initialCount.findIndex(id => id === index),
+      1
+    );
+    setInitialCount([...initialCount]);
+    setTotalCount(totalCount - count);
+  };
+
   return (
     <div>
       <button className='btn btn-sm btn-primary m-3' onClick={onReset}>
         Reset
       </button>
-      {counters.map((counter, index) => (
+      {initialCount.map(value => (
         <Counter
-          key={counter.id}
-          counter={counter}
-          onIncrement={onIncrement}
-          onSubstitution={onSubstitution}
+          key={value}
+          index={value}
           onDelete={onDelete}
-          index={index}
+          setTotalCount={setTotalCount}
+          totalCount={totalCount}
         />
       ))}
     </div>
