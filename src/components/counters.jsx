@@ -6,11 +6,11 @@ const Counters = ({
   onIncrement,
   onSubstitution,
   onReset,
-  onDelete,
+  onDelete
 }) => {
   return (
     <div>
-      <button className="btn btn-sm btn-primary m-3" onClick={onReset}>
+      <button className='btn btn-sm btn-primary m-3' onClick={onReset}>
         Reset
       </button>
       {counters.map((counter, index) => (
