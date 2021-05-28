@@ -13,13 +13,14 @@ const Counters = ({
       <button className="btn btn-sm btn-primary m-3" onClick={onReset}>
         Reset
       </button>
-      {counters.map((counter) => (
+      {counters.map((counter, index) => (
         <Counter
           key={counter.id}
           counter={counter}
           onIncrement={onIncrement}
           onSubstitution={onSubstitution}
           onDelete={onDelete}
+          index={index}
         />
       ))}
     </div>

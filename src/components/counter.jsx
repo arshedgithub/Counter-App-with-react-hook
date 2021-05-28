@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class Counter extends Component {
   render() {
-    const { counter, onIncrement, onSubstitution, onDelete } = this.props;
+    const { counter, onIncrement, onSubstitution, onDelete, index } = this.props;
     return (
       <div className="container">
         <div className="row my-3">
@@ -14,13 +14,13 @@ class Counter extends Component {
           <div className="col">
             <button
               className="btn btn-secondary mx-1"
-              onClick={() => onIncrement(counter)}
+              onClick={() => onIncrement(counter, index)}
             >
               +
             </button>
             <button
               className="btn btn-secondary mx-2"
-              onClick={() => onSubstitution(counter)}
+              onClick={() => onSubstitution(counter, index)}
               disabled={counter.value === 0 ? "disabled" : ""}
             >
               -
