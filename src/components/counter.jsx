@@ -1,13 +1,8 @@
 import React, { useState, useEffect } from "react";
 
-const Counter = ({
-  index,
-  onDelete,
-  setTotalCount,
-  totalCount,
-  setCountersToZero
-}) => {
+const Counter = ({ index, onDelete, setTotalCount, totalCount }) => {
   const [count, setCount] = useState(0);
+
   useEffect(() => {
     if (totalCount === 0) {
       setCount(0);
