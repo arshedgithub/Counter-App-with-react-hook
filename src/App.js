@@ -19,7 +19,6 @@ class App extends Component {
     counters[index] = { ...counter };
     counters[index].value++;
     this.setState({ counters });
-    console.log(this.state.counters)
   }
 
   handleSubstitution = (counter) => {
